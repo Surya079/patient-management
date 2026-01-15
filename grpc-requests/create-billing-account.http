@@ -1,0 +1,7 @@
+GRPC localhost:9001/BillingService/CreateBillingAccount
+
+{
+  "patientId": "123",
+  "name": "ajay",
+  "email": "ajay@mail.com"
+}
