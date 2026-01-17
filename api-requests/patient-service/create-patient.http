@@ -3,8 +3,8 @@ POST http://localhost:4000/patients/create
 Content-Type: application/json
 
 {
-  "name": "Ajay  billing account 2",
-  "email": "Ajay_billing_account_3@example.com",
+  "name": "Ajay  billing account 3",
+  "email": "Ajay_billing_account_6@example.com",
   "address": "123, Perangi medu",
   "dateOfBirth": "2003-12-25",
   "registeredDate": "2025-12-23"
