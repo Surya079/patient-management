@@ -87,5 +87,4 @@ public class PatientService {
         patientRepositoty.deleteById(patient.getId());
     }
 
-
 }

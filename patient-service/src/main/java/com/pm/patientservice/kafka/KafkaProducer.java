@@ -25,7 +25,15 @@ public class KafkaProducer {
                 .setEventType("PATIENT_CREATED").build();
 
         try{
-            kafkaTemplate.send("patient", event.toByteArray());
+            kafkaTemplate.send("patient", event.toByteArray())
+                    .whenComplete((result, ex) -> {
+                        if (ex != null) {
+                            log.error("Kafka send failed", ex);
+                        } else {
+                            log.info("Kafka send success, offset={}",
+                                    result.getRecordMetadata().offset());
+                        }
+                    });
         } catch (Exception e) {
             log.error("Error in patient event created: {}",event);
         }
