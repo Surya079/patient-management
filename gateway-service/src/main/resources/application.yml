@@ -1,0 +1,32 @@
+server:
+  port: 4004
+
+
+spring:
+  main:
+    web-application-type: reactive
+
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: patient-service-route
+              uri: http://patient-service:4000
+              predicates:
+                - Path=/api/patients/**
+              filters:
+                - StripPrefix=1
+            - id: api-doc-patient-route
+              uri: http://patient-service:4000
+              predicates:
+                - Path=/api-docs/patients
+              filters:
+                - RewritePath=/api-docs/patients, /v3/api-docs
+
+management:
+  endpoint:
+    web:
+      exposure:
+        include: gateway, health
+
