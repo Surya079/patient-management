@@ -46,7 +46,7 @@ public class PatientService {
         if (patientRepositoty.existsByEmail(patientRequestDto.getEmail())) {
             throw new EmailAlreadyExistsException("Patient with this email already exists! "
                     + patientRequestDto.getEmail());
-        }else{
+        }
             Patient newPatient = patientRepositoty.save(PatientMapper.toModel(patientRequestDto));
 
             billingServiceGrpcClient.createBillingAccount(
@@ -56,7 +56,7 @@ public class PatientService {
 
             kafkaProducer.sendEvent(newPatient);
             return PatientMapper.toDto(newPatient);
-        }
+
 
 
 
